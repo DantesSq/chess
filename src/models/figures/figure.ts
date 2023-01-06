@@ -13,6 +13,7 @@ export enum FigureNames {
 }
 
 export class Figure {
+    [x: string]: any;
     color: Colors;
 
     logo: typeof logo | null;
@@ -43,10 +44,6 @@ export class Figure {
         if (target.figure) target.figure.color = this.color;
         this.cell = target;
 
-        if (this.canMove(this.getKing(this.color === Colors.BLACK ? Colors.WHITE : Colors.BLACK))) {
-            alert('ШАХ');
-        }
-
         this.isFirstStep = false;
         return true;
     }
@@ -55,37 +52,41 @@ export class Figure {
         for (let i = 0; i < this.cell.board.cells.length; i++) {
             const row = this.cell.board.cells[i];
             for (let j = 0; j < row.length; j++) {
-                if (row[j].figure?.name === FigureNames.KING && color == row[j].figure?.color) {
-                    const king = row[j];
-                    return king;
-                }
+                if (row[j].figure)
+                    if (
+                        row[j].figure?.name === FigureNames.KING &&
+                        row[j].figure?.color === color
+                    ) {
+                        const kingCell = row[j];
+                        console.log(kingCell, 'kingcell');
+                        return kingCell;
+                    }
             }
         }
+        return this.cell;
     }
 
-    isKingAttacked() {
-        if()
-    }
-
-    // isKingAttacked(target: Cell) {
+    // isCheck(target: Cell): boolean {
     //     for (let i = 0; i < target.board.cells.length; i++) {
     //         const row = target.board.cells[i];
     //         for (let j = 0; j < row.length; j++) {
-    //             const target = row[j];
-    //             if (target.figure?.name === FigureNames.KING) {
-    //                 return this.kingEnemy(target);
-    //             }
-    //         }
-    //     }
-    // }
-    // kingEnemy(kingCell: Cell): boolean {
-    //     for (let i = 0; i < kingCell.board.cells.length; i++) {
-    //         const row = kingCell.board.cells[i];
-    //         for (let j = 0; j < row.length; j++) {
-    //             const enemyCell = row[j];
-    //             if (enemyCell.figure?.canMove(kingCell)) {
-    //                 return true;
-    //             }
+    //             if (row[j].figure)
+    //                 if (row[j].figure?.color !== this.color) {
+    //                     const enemyCell = row[j];
+    //                     if (enemyCell !== target) {
+    //                         const thisFigure = this;
+    //                         const targetFigure = target.figure;
+    //                         this.cell.figure = null;
+    //                         target.figure = null;
+    //                         if (enemyCell.figure?.canMove(target)) {
+    //                             this.cell.figure = thisFigure;
+    //                             target.figure = targetFigure;
+    //                             return true;
+    //                         }
+    //                         this.cell.figure = thisFigure;
+    //                         target.figure = targetFigure;
+    //                     }
+    //                 }
     //         }
     //     }
     //     return false;

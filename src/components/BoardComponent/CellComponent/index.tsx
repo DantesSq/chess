@@ -1,6 +1,5 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { Cell } from '../../../models/Cell';
-import { Colors } from '../../../models/Colors';
 
 interface CellProps {
     cell: Cell;
@@ -16,7 +15,7 @@ export const CellComponent: FC<CellProps> = ({ cell, selected, onClickCell }) =>
             }}
             className={`cell ${cell.color} ${selected ? 'selected' : ''}`}>
             {cell.available && !cell.figure && <div className={'available'}></div>}
-            <img src={cell.figure?.logo || ''} />
+            <img alt="" src={cell.figure?.logo || ''} />
         </div>
     );
 };

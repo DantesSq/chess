@@ -6,14 +6,27 @@ import whiteLogo from '../../assets/white-rook.svg';
 export class Rook extends Figure {
     constructor(cell: Cell, color: Colors) {
         super(cell, color);
-        this.logo = color == Colors.WHITE ? whiteLogo : blackLogo;
+        this.logo = color === Colors.WHITE ? whiteLogo : blackLogo;
         this.name = FigureNames.ROOK;
     }
 
     canMove(target: Cell): boolean {
         if (!super.canMove(target)) return false;
         if (this.cell.isEmptyVertical(target) || this.cell.isEmptyHotizontal(target)) {
-            return true;
+            const thisFigure = this.cell.figure;
+            const targetFigure = target.figure;
+            const king = this.getKing(this.color);
+            console.log(king, 'king');
+            target.figure = thisFigure;
+            this.cell.figure = null;
+
+            if (!king.figure?.isCheck(king)) {
+                this.cell.figure = thisFigure;
+                target.figure = targetFigure;
+                return true;
+            }
+            this.cell.figure = thisFigure;
+            target.figure = targetFigure;
         }
 
         return false;

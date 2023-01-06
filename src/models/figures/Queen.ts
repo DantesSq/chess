@@ -6,7 +6,7 @@ import whiteLogo from '../../assets/white-queen.svg';
 export class Queen extends Figure {
     constructor(cell: Cell, color: Colors) {
         super(cell, color);
-        this.logo = color == Colors.WHITE ? whiteLogo : blackLogo;
+        this.logo = color === Colors.WHITE ? whiteLogo : blackLogo;
         this.name = FigureNames.QUEEN;
     }
 
@@ -16,8 +16,22 @@ export class Queen extends Figure {
             this.cell.isEmptyHotizontal(target) ||
             this.cell.isEmptyVertical(target) ||
             this.cell.isEmptyDiagonal(target)
-        )
-            return true;
+        ) {
+            const thisFigure = this.cell.figure;
+            const targetFigure = target.figure;
+            const king = this.getKing(this.color);
+            console.log(king, 'king');
+            target.figure = thisFigure;
+            this.cell.figure = null;
+
+            if (!king.figure?.isCheck(king)) {
+                this.cell.figure = thisFigure;
+                target.figure = targetFigure;
+                return true;
+            }
+            this.cell.figure = thisFigure;
+            target.figure = targetFigure;
+        }
         return false;
     }
 }

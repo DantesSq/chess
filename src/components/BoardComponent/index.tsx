@@ -32,16 +32,16 @@ const BoardComponent: FC<BoardProps> = (props) => {
         }
     };
 
-    React.useEffect(() => {
-        highLightCells();
-    }, [selectedCell]);
-
     const highLightCells = () => {
         if (selectedCell) {
             board.highLightCells(selectedCell);
         }
         updateBoard();
     };
+
+    React.useEffect(() => {
+        highLightCells();
+    }, [selectedCell]);
 
     const updateBoard = () => {
         const newBoard = board.getCopyBoard();

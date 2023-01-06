@@ -6,18 +6,32 @@ import whiteLogo from '../../assets/white-knight.svg';
 export class Knight extends Figure {
     constructor(cell: Cell, color: Colors) {
         super(cell, color);
-        this.logo = color == Colors.WHITE ? whiteLogo : blackLogo;
+        this.logo = color === Colors.WHITE ? whiteLogo : blackLogo;
         this.name = FigureNames.KNIGHT;
     }
 
     canMove(target: Cell): boolean {
         if (!super.canMove(target)) return false;
-        if (Math.abs(target.x - this.cell.x) === 2 && Math.abs(target.y - this.cell.y) === 1) {
-            return true;
+        if (
+            (Math.abs(target.x - this.cell.x) === 2 && Math.abs(target.y - this.cell.y) === 1) ||
+            (Math.abs(target.y - this.cell.y) === 2 && Math.abs(target.x - this.cell.x) === 1)
+        ) {
+            const thisFigure = this.cell.figure;
+            const targetFigure = target.figure;
+            const king = this.getKing(this.color);
+            console.log(king, 'king');
+            target.figure = thisFigure;
+            this.cell.figure = null;
+
+            if (!king.figure?.isCheck(king)) {
+                this.cell.figure = thisFigure;
+                target.figure = targetFigure;
+                return true;
+            }
+            this.cell.figure = thisFigure;
+            target.figure = targetFigure;
         }
-        if (Math.abs(target.y - this.cell.y) === 2 && Math.abs(target.x - this.cell.x) === 1) {
-            return true;
-        }
+
         return false;
     }
 }

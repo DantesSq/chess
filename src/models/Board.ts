@@ -6,7 +6,6 @@ import { Queen } from './figures/Queen';
 import { Knight } from './figures/Knight';
 import { Pawn } from './figures/Pawn';
 import { Bishop } from './figures/Bishop';
-import { FigureNames } from './figures/figure';
 
 export class Board {
     cells: Cell[][] = [];
@@ -66,7 +65,6 @@ export class Board {
     public addFigures() {
         this.addKings();
         this.addQueens();
-        this.addPawns();
         this.addRooks();
         this.addKnights();
         this.addBishops();
