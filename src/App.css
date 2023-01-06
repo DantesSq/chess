@@ -1,0 +1,58 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(62, 62, 62);
+}
+
+.board {
+  width: calc(72*8);
+  height: calc(72*8);
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #fff;
+}
+
+.cell {
+  position: relative;
+  width: 72px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.white {
+background-color: #eeeed2;
+}
+
+.black {
+  background-color: #769656;
+}
+.selected {
+  background-color: burlywood;
+}
+
+.available {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: rgb(73, 66, 66);
+  border-radius: 50%;
+}
+
+.cell img {
+  min-width: 56px;
+  min-height: 56px;
+  position: relative;
+
+}
+
