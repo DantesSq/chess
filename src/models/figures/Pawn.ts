@@ -73,7 +73,6 @@ export class Pawn extends Figure {
                 target.figure = targetFigure;
             }
         }
-
         return false;
     }
 }

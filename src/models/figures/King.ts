@@ -32,7 +32,7 @@ export class King extends Figure {
                             const thisFigure = this;
                             const targetFigure = target.figure;
                             this.cell.figure = null;
-                            target.figure = null;
+                            target.figure = thisFigure;
                             if (enemyCell.figure?.canMove(target)) {
                                 this.cell.figure = thisFigure;
                                 target.figure = targetFigure;

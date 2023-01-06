@@ -85,30 +85,4 @@ export class Cell {
         }
         return false;
     }
-
-    // isCheck(kingCell: Cell, target: Cell): boolean {
-    //     for (let i = 0; i < this.board.cells.length; i++) {
-    //         const row = this.board.cells[i];
-    //         for (let j = 0; j < row.length; j++) {
-    //             if (row[j].figure)
-    //                 if (row[j].figure?.color !== kingCell.figure?.color) {
-    //                     console.log(1, this.color, this);
-    //                     const enemyCell = row[j];
-    //                     const cellFigure = this.figure;
-    //                     const targetFigure = target.figure;
-    //                     target.figure = this.figure;
-    //                     this.figure = null;
-    //                     if (enemyCell.figure?.canMove(kingCell)) {
-    //                         console.log(2, this.color);
-    //                         this.figure = cellFigure;
-    //                         target.figure = targetFigure;
-    //                         return true;
-    //                     }
-    //                     this.figure = cellFigure;
-    //                     target.figure = targetFigure;
-    //                 }
-    //         }
-    //     }
-    //     return false;
-    // }
 }
