@@ -58,7 +58,6 @@ export class Figure {
                         row[j].figure?.color === color
                     ) {
                         const kingCell = row[j];
-                        console.log(kingCell, 'kingcell');
                         return kingCell;
                     }
             }
@@ -66,29 +65,21 @@ export class Figure {
         return this.cell;
     }
 
-    // isCheck(target: Cell): boolean {
-    //     for (let i = 0; i < target.board.cells.length; i++) {
-    //         const row = target.board.cells[i];
-    //         for (let j = 0; j < row.length; j++) {
-    //             if (row[j].figure)
-    //                 if (row[j].figure?.color !== this.color) {
-    //                     const enemyCell = row[j];
-    //                     if (enemyCell !== target) {
-    //                         const thisFigure = this;
-    //                         const targetFigure = target.figure;
-    //                         this.cell.figure = null;
-    //                         target.figure = null;
-    //                         if (enemyCell.figure?.canMove(target)) {
-    //                             this.cell.figure = thisFigure;
-    //                             target.figure = targetFigure;
-    //                             return true;
-    //                         }
-    //                         this.cell.figure = thisFigure;
-    //                         target.figure = targetFigure;
-    //                     }
-    //                 }
-    //         }
-    //     }
-    //     return false;
-    // }
+    canMoveCheck(target: Cell): boolean {
+        const thisFigure = this.cell.figure;
+        const targetFigure = target.figure;
+        const king = this.getKing(this.color);
+        target.figure = thisFigure;
+        this.cell.figure = null;
+
+        if (!king.figure?.isCheck(king)) {
+            this.cell.figure = thisFigure;
+            target.figure = targetFigure;
+            return true;
+        }
+        this.cell.figure = thisFigure;
+        target.figure = targetFigure;
+
+        return false;
+    }
 }

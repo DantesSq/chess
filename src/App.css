@@ -1,6 +1,7 @@
 * {
   margin: 0;
   padding: 0;
+  border: 0;
   box-sizing: border-box;
 }
 
@@ -13,14 +14,14 @@ body {
   background-color: rgb(62, 62, 62);
 }
 
-.board {
+
+.cells {
   width: calc(72*8);
   height: calc(72*8);
   display: flex;
   flex-wrap: wrap;
   background-color: #fff;
 }
-
 .cell {
   position: relative;
   width: 72px;
@@ -49,6 +50,10 @@ background-color: #eeeed2;
   border-radius: 50%;
 }
 
+.enemy {
+  background-color: rgb(184, 69, 69);
+}
+
 .cell img {
   min-width: 56px;
   min-height: 56px;
@@ -56,3 +61,63 @@ background-color: #eeeed2;
 
 }
 
+h1 {
+  color: #fff;
+}
+
+.btn {
+  
+  position: absolute;
+  background-color: #32312f;
+  
+  color: #d6d6d6;
+  font-size: 17px;
+  padding: 18px 28px;
+  border-radius: 4%;
+}
+
+.minutes .btn {
+  position: relative;
+}
+.btn:active {
+  background-color: #4a4846;
+  color: #fff;
+
+}
+
+.btn:hover {
+  cursor: pointer;
+}
+
+ .restart {
+  left: 350px;
+  bottom: 100px;
+}
+
+ .minutes {
+  width: 250px;
+  position: absolute;
+  left: 150px;
+  bottom: 200px;
+  display: flex;
+  justify-content: space-between;
+  
+}
+
+
+.player {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  padding: 5px 0;
+}
+
+.timer {
+  color: #fff;
+  background-color: #32312f;
+  font-size: 40px;
+  width: 150px;
+  height: 50px;
+  text-align: center;
+  border-radius: 4%;
+}

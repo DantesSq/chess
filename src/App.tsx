@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import BoardComponent from './components/BoardComponent';
+import PlayerComponent from './components/BoardComponent/PlayerComponent';
 import { Board } from './models/Board';
 
 function App() {
@@ -19,7 +20,7 @@ function App() {
 
     return (
         <div className="App">
-            <BoardComponent board={board} setBoard={setBoard} />
+            <BoardComponent board={board} setBoard={setBoard} restart={restart} />
         </div>
     );
 }

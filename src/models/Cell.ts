@@ -24,7 +24,6 @@ export class Cell {
     moveFigure(target: Cell) {
         if (this.figure?.canMove(target)) {
             if (this.figure.name === FigureNames.PAWN && (target.x === 0 || target.x === 7)) {
-                console.log(this);
                 new Queen(this, this.figure.color);
             }
             this.figure.moveFigure(target);

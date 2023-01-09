@@ -13,20 +13,7 @@ export class Rook extends Figure {
     canMove(target: Cell): boolean {
         if (!super.canMove(target)) return false;
         if (this.cell.isEmptyVertical(target) || this.cell.isEmptyHotizontal(target)) {
-            const thisFigure = this.cell.figure;
-            const targetFigure = target.figure;
-            const king = this.getKing(this.color);
-            console.log(king, 'king');
-            target.figure = thisFigure;
-            this.cell.figure = null;
-
-            if (!king.figure?.isCheck(king)) {
-                this.cell.figure = thisFigure;
-                target.figure = targetFigure;
-                return true;
-            }
-            this.cell.figure = thisFigure;
-            target.figure = targetFigure;
+            return this.canMoveCheck(target);
         }
 
         return false;

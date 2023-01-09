@@ -16,20 +16,7 @@ export class Pawn extends Figure {
 
         if (Math.abs(target.y - this.cell.y) === 1 && target.x === this.cell.x + direction) {
             if (this.cell.isEnemy(target)) {
-                const thisFigure = this.cell.figure;
-                const targetFigure = target.figure;
-                const king = this.getKing(this.color);
-                console.log(king, 'king');
-                target.figure = thisFigure;
-                this.cell.figure = null;
-
-                if (!king.figure?.isCheck(king)) {
-                    this.cell.figure = thisFigure;
-                    target.figure = targetFigure;
-                    return true;
-                }
-                this.cell.figure = thisFigure;
-                target.figure = targetFigure;
+                return this.canMoveCheck(target);
             }
         }
 
@@ -39,38 +26,12 @@ export class Pawn extends Figure {
             if (this.isFirstStep) {
                 if (this.cell.board.getCell(this.cell.x + 2 * direction, this.cell.y).isEmpty()) {
                     if (this.cell.x + 2 * direction === target.x) {
-                        const thisFigure = this.cell.figure;
-                        const targetFigure = target.figure;
-                        const king = this.getKing(this.color);
-                        console.log(king, 'king');
-                        target.figure = thisFigure;
-                        this.cell.figure = null;
-
-                        if (!king.figure?.isCheck(king)) {
-                            this.cell.figure = thisFigure;
-                            target.figure = targetFigure;
-                            return true;
-                        }
-                        this.cell.figure = thisFigure;
-                        target.figure = targetFigure;
+                        return this.canMoveCheck(target);
                     }
                 }
             }
             if (this.cell.x + direction === target.x) {
-                const thisFigure = this.cell.figure;
-                const targetFigure = target.figure;
-                const king = this.getKing(this.color);
-                console.log(king, 'king');
-                target.figure = thisFigure;
-                this.cell.figure = null;
-
-                if (!king.figure?.isCheck(king)) {
-                    this.cell.figure = thisFigure;
-                    target.figure = targetFigure;
-                    return true;
-                }
-                this.cell.figure = thisFigure;
-                target.figure = targetFigure;
+                return this.canMoveCheck(target);
             }
         }
         return false;

@@ -16,20 +16,7 @@ export class Knight extends Figure {
             (Math.abs(target.x - this.cell.x) === 2 && Math.abs(target.y - this.cell.y) === 1) ||
             (Math.abs(target.y - this.cell.y) === 2 && Math.abs(target.x - this.cell.x) === 1)
         ) {
-            const thisFigure = this.cell.figure;
-            const targetFigure = target.figure;
-            const king = this.getKing(this.color);
-            console.log(king, 'king');
-            target.figure = thisFigure;
-            this.cell.figure = null;
-
-            if (!king.figure?.isCheck(king)) {
-                this.cell.figure = thisFigure;
-                target.figure = targetFigure;
-                return true;
-            }
-            this.cell.figure = thisFigure;
-            target.figure = targetFigure;
+            return this.canMoveCheck(target);
         }
 
         return false;

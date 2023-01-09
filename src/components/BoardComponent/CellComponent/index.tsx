@@ -13,8 +13,11 @@ export const CellComponent: FC<CellProps> = ({ cell, selected, onClickCell }) =>
             onClick={() => {
                 onClickCell(cell);
             }}
-            className={`cell ${cell.color} ${selected ? 'selected' : ''}`}>
+            className={`cell ${cell.color} ${selected ? 'selected' : ''} ${
+                cell.available && cell.figure ? 'enemy' : ''
+            }`}>
             {cell.available && !cell.figure && <div className={'available'}></div>}
+
             <img alt="" src={cell.figure?.logo || ''} />
         </div>
     );
